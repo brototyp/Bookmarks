@@ -7,39 +7,34 @@
 //
 
 import UIKit
+import WebKit
+import bytes
 
+// TODO: Add content, for the initial iPad Screen
 class DetailViewController: UIViewController {
 
-    @IBOutlet weak var detailDescriptionLabel: UILabel!
-
-
-    func configureView() {
-        // Update the user interface for the detail item.
-        if let detail = detailItem {
-            if let label = detailDescriptionLabel {
-                label.text = detail.description
-            }
-        }
-    }
-
+    let webView = WKWebView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        configureView()
+        view.addSubview(webView)
+        webView.constrainEdges(to: view)
+        webView.allowsBackForwardNavigationGestures = true
+        webView.navigationDelegate = self
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    var detailItem: NSDate? {
+    var detailItem: Bookmark? {
         didSet {
-            // Update the view.
-            configureView()
+            guard let detailItem = detailItem else { return }
+            title = detailItem.title
+            let request = URLRequest(url: detailItem.url)
+            webView.load(request)
         }
     }
-
-
 }
 
+extension DetailViewController: WKNavigationDelegate {
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        title = webView.title
+    }
+}
