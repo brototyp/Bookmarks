@@ -10,7 +10,7 @@ import UIKit
 import WebKit
 import bytes
 
-// TODO: Add content, for the initial iPad Screen
+/// TODO: Add content, for the initial iPad Screen
 class DetailViewController: UIViewController {
 
     let webView = WKWebView()

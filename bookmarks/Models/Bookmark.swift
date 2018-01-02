@@ -29,8 +29,10 @@ extension Bookmark {
     }
 }
 
-extension Bookmark: Equatable {
-    static func == (lhs: Bookmark, rhs: Bookmark) -> Bool {
-        return lhs.uuid == rhs.uuid
-    }
-}
+//extension Bookmark: Equatable {
+//    /// TODO: fixme
+//    static func == (lhs: Bookmark, rhs: Bookmark) -> Bool {
+//        return lhs.uuid == rhs.uuid
+//    }
+//}
+
