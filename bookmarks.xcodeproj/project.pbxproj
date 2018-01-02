@@ -15,7 +15,10 @@
 		1FA1BCE51FFB6ED600B6EF60 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FA1BCE31FFB6ED600B6EF60 /* LaunchScreen.storyboard */; };
 		1FA1BCED1FFB6F3900B6EF60 /* Pasteboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA1BCEC1FFB6F3900B6EF60 /* Pasteboard.swift */; };
 		1FA1BCF01FFB70D700B6EF60 /* Bookmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA1BCEF1FFB70D700B6EF60 /* Bookmark.swift */; };
-		1FA1BCF21FFB711800B6EF60 /* Library.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA1BCF11FFB711800B6EF60 /* Library.swift */; };
+		1FA1BCF21FFB711800B6EF60 /* BookmarkStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA1BCF11FFB711800B6EF60 /* BookmarkStorage.swift */; };
+		1FA1BCF41FFB845F00B6EF60 /* BookmarkUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA1BCF31FFB845F00B6EF60 /* BookmarkUpdater.swift */; };
+		1FA1BCFA1FFB849F00B6EF60 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA1BCF91FFB849F00B6EF60 /* Result.swift */; };
+		1FA1BCFC1FFB85BA00B6EF60 /* DataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA1BCFB1FFB85BA00B6EF60 /* DataFetcher.swift */; };
 		574BFA76B43D114D19BBCC76 /* Pods_bookmarks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9054B01C86F5917B86085C22 /* Pods_bookmarks.framework */; };
 /* End PBXBuildFile section */
 
@@ -30,7 +33,10 @@
 		1FA1BCE61FFB6ED600B6EF60 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1FA1BCEC1FFB6F3900B6EF60 /* Pasteboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pasteboard.swift; sourceTree = "<group>"; };
 		1FA1BCEF1FFB70D700B6EF60 /* Bookmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bookmark.swift; sourceTree = "<group>"; };
-		1FA1BCF11FFB711800B6EF60 /* Library.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Library.swift; sourceTree = "<group>"; };
+		1FA1BCF11FFB711800B6EF60 /* BookmarkStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkStorage.swift; sourceTree = "<group>"; };
+		1FA1BCF31FFB845F00B6EF60 /* BookmarkUpdater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkUpdater.swift; sourceTree = "<group>"; };
+		1FA1BCF91FFB849F00B6EF60 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		1FA1BCFB1FFB85BA00B6EF60 /* DataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFetcher.swift; sourceTree = "<group>"; };
 		62563F7449E411F19F9506D6 /* Pods-bookmarks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bookmarks.debug.xcconfig"; path = "Pods/Target Support Files/Pods-bookmarks/Pods-bookmarks.debug.xcconfig"; sourceTree = "<group>"; };
 		9054B01C86F5917B86085C22 /* Pods_bookmarks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_bookmarks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D254A234DD9A0C11B3D0AB1D /* Pods-bookmarks.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bookmarks.release.xcconfig"; path = "Pods/Target Support Files/Pods-bookmarks/Pods-bookmarks.release.xcconfig"; sourceTree = "<group>"; };
@@ -84,11 +90,22 @@
 		1FA1BCEE1FFB70C900B6EF60 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				1FA1BCFD1FFB890B00B6EF60 /* BookmarkStorage */,
 				1FA1BCEC1FFB6F3900B6EF60 /* Pasteboard.swift */,
 				1FA1BCEF1FFB70D700B6EF60 /* Bookmark.swift */,
-				1FA1BCF11FFB711800B6EF60 /* Library.swift */,
+				1FA1BCF31FFB845F00B6EF60 /* BookmarkUpdater.swift */,
+				1FA1BCF91FFB849F00B6EF60 /* Result.swift */,
+				1FA1BCFB1FFB85BA00B6EF60 /* DataFetcher.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		1FA1BCFD1FFB890B00B6EF60 /* BookmarkStorage */ = {
+			isa = PBXGroup;
+			children = (
+				1FA1BCF11FFB711800B6EF60 /* BookmarkStorage.swift */,
+			);
+			path = BookmarkStorage;
 			sourceTree = "<group>";
 		};
 		236B579DED658234C6D5F0E3 /* Frameworks */ = {
@@ -201,10 +218,12 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-bookmarks/Pods-bookmarks-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Kanna/Kanna.framework",
 				"${BUILT_PRODUCTS_DIR}/bytes/bytes.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kanna.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/bytes.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -242,7 +261,10 @@
 				1FA1BCDD1FFB6ED600B6EF60 /* DetailViewController.swift in Sources */,
 				1FA1BCDB1FFB6ED600B6EF60 /* MasterViewController.swift in Sources */,
 				1FA1BCD91FFB6ED600B6EF60 /* AppDelegate.swift in Sources */,
-				1FA1BCF21FFB711800B6EF60 /* Library.swift in Sources */,
+				1FA1BCF41FFB845F00B6EF60 /* BookmarkUpdater.swift in Sources */,
+				1FA1BCFC1FFB85BA00B6EF60 /* DataFetcher.swift in Sources */,
+				1FA1BCFA1FFB849F00B6EF60 /* Result.swift in Sources */,
+				1FA1BCF21FFB711800B6EF60 /* BookmarkStorage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

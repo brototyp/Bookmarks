@@ -14,7 +14,8 @@ struct Bookmark: Codable {
     let createdAt: Date
     
     let title: String?
-    let content: Data?
+    let data: Data?
+    let content: String?
 }
 
 extension Bookmark {
@@ -23,6 +24,7 @@ extension Bookmark {
         self.url = url
         createdAt = Date()
         title = nil
+        data = nil
         content = nil
     }
 }

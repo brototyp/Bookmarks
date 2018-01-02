@@ -11,6 +11,8 @@ import Foundation
 protocol BookmarkStorage {
     var count: Int { get }
     
+    func update(_ bookmark: Bookmark)
+    
     func add(_ bookmark: Bookmark)
     func remove(_ bookmark: Bookmark)
     
@@ -57,6 +59,11 @@ extension UserDefaultsBookmarkStorage: BookmarkStorage {
     
     func remove(_ bookmark: Bookmark) {
         bookmarks = bookmarks.filter({ $0 != bookmark }) // improve: stop after we found the one we want to remove
+    }
+    
+    func update(_ bookmark: Bookmark) {
+        remove(bookmark)
+        add(bookmark)
     }
     
     func bookmark(atIndex index: Int) -> Bookmark? {

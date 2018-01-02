@@ -13,6 +13,7 @@ class MasterViewController: UITableViewController {
     var detailViewController: DetailViewController? = nil
     let bookmarkStorage: BookmarkStorage = UserDefaultsBookmarkStorage()
     let pasteboard = Pasteboard()
+    let bookmarkUpdater = BookmarkUpdater()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,9 +35,18 @@ class MasterViewController: UITableViewController {
         super.viewDidAppear(animated)
         if let url = pasteboard.url(), bookmarkStorage.bookmark(with: url) == nil {
             let bookmark = Bookmark(url)
-            bookmarkStorage.add(bookmark)
-            let indexPath = IndexPath(row: 0, section: 0)
-            tableView.insertRows(at: [indexPath], with: .automatic)
+            bookmarkUpdater.update(bookmark) { result in
+                switch result {
+                case .success(let bookmark):
+                    self.bookmarkStorage.add(bookmark)
+                    let indexPath = IndexPath(row: 0, section: 0)
+                    DispatchQueue.main.async {
+                        self.tableView.insertRows(at: [indexPath], with: .automatic)
+                    }
+                case .error(let error):
+                    return // add error handling
+                }
+            }
         }
     }
 
